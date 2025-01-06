@@ -541,7 +541,7 @@ build-iso $image="aurora" $tag="latest" $flavor="main" ghcr="0" pipeline="0":
     iso_build_args+=(SECURE_BOOT_KEY_URL="https://github.com/ublue-os/akmods/raw/main/certs/public_key.der")
     iso_build_args+=(VARIANT="Kinoite")
     iso_build_args+=(VERSION="${FEDORA_VERSION}")
-    iso_build_args+=(WEB_UI="false")
+    iso_build_args+=(WEB_UI="true")
 
     just sudoif podman run "${iso_build_args[@]}"
 
