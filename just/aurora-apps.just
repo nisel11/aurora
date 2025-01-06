@@ -175,3 +175,18 @@ setup-brew-not-found ACTION="":
         pkexec rm -f "${FILES_TO_BE_REMOVED[@]}"
       echo "Brew command-not-found has been ${b}${red}disabled${n}"
     fi
+
+# Install gaming flatpaks
+[group('Apps')]
+install-gaming-flatpaks:
+    #!/usr/bin/env bash
+    if ! flatpak remotes | grep -q flathub; then
+        flatpak remote-add --system flathub https://flathub.org/repo/flathub.flatpakrepo
+    fi
+    flatpak --system -y install --or-update app/com.valvesoftware.Steam/x86_64/stable \
+                                            app/com.heroicgameslauncher.hgl/x86_64/stable \
+                                            app/net.lutris.Lutris/x86_64/stable \
+                                            app/net.davidotek.pupgui2/x86_64/stable \
+                                            runtime/org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/24.08 \
+                                            runtime/org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/24.08 runtime/com.obsproject.Studio.Plugin.OBSVkCapture/x86_64/stable \
+                                            runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08
